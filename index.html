@@ -1,34 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+
   <title>Frontend Mentor | Ping coming soon page</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
   </style>
+
+  <link rel="stylesheet" href="static/resetStyle.css">
+  <link rel="stylesheet" href="static/style.css">
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
+
 <body>
 
-  We are launching soon!
+  <main>
+    <article>
+      <figure>
+        <img src="images/logo.svg" alt="">
+      </figure>
+      <section>
+        <h1>We are launching <span>soon!</span></h1>
+        <p>Subscribe and get notified</p>
+      </section>
+    </article>
+    <section>
+      <form action="#">
+        <input type="email" name="txt-email" id="txt-email" class="txt-email" placeholder="Your email address...">
+        <button id="btn-send">Notify Me</button>
+      </form>
+    </section>
+    <figure>
+      <img src="images/illustration-dashboard.png" alt="dashboard" class="big-image">
+    </figure>
+    <footer>
+      <ul>
+        <li><ion-icon name="logo-facebook"></ion-icon></li>
+        <li><ion-icon name="logo-twitter"></ion-icon></li>
+        <li><ion-icon name="logo-instagram"></ion-icon></li>
+      </ul>
+      <section>
+        <p>
+          &copy; Copyright Ping. All rights reserved.
+        </p>
+        <p class="attribution">
+          Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+          Coded by <a href="#">Your Name Here</a>.
+        </p>
+      </section>
 
-  Subscribe and get notified
+    </footer>
+  </main>
 
-  Notify Me
+  <script>
+    const btnSend = document.getElementById('btn-send')
+    const txtEmail = document.getElementById('txt-email')
+    const form = document.querySelector('form')
 
-  &copy; Copyright Ping. All rights reserved.
+    btnSend.addEventListener('click', (e) => {
+      e.preventDefault()
 
-  <footer>
-    <p class="attribution">
-      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-      Coded by <a href="#">Your Name Here</a>.
-    </p>
-  </footer>
+      if (!txtEmail.validity.valid) {
+        txtEmail.classList.add('invalid')
+        txtEmail.focus()
+        form.style.setProperty('--after-content', '"Please provide a valid email address"')
+      }
+      else if (txtEmail.value === '') {
+        txtEmail.classList.add('invalid')
+        txtEmail.focus()
+        form.style.setProperty('--after-content', '"Whoops! It looks like you forgot to add your email"')
+      }
+      else {
+        txtEmail.classList.remove('invalid')
+        form.style.removeProperty('--after-content');
+      }
+
+      if (!txtEmail.classList.contains('invalid')) {
+        form.submit();
+      }
+    })
+
+  </script>
 </body>
+
 </html>
